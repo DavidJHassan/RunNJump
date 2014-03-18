@@ -1,0 +1,39 @@
+#game{
+position: fixed;
+top: 5%;
+left: 25%;
+border: 1px solid black;
+}
+
+#menu{
+position: fixed;
+top: 5%;
+left: 25%;
+height: 800px;
+width: 800px;
+border: 1px solid black;
+background: black;
+}
+
+#menutitle{
+	position: absolute;
+    top: 10%;
+	left: 30%;
+    padding: 5px;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 25pt;
+    text-align: center;
+    color: red;
+}
+
+#startButton{
+    position: absolute;
+    top: 30%;
+	left: 45%;
+    padding: 5px;
+    border: 1px solid red;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 25pt;
+    text-align: center;
+    color: red;
+}
