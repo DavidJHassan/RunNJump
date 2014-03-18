@@ -6,11 +6,13 @@ var context = canvas[0].getContext("2d");
 var player = new Player();
 var platform = new Platform();
 
+/*Game Related*/
 function Player()
 {
 	this.sprite = new Image();
 	this.x = 0;
 	this.y = 400;
+	this.rect = [this.x, this.y, this.sprite.width, this.sprite.height];
 	this.mLeft = false;
 	this.mRight = false;
 	this.mUp = false;
@@ -20,16 +22,54 @@ function Player()
 	this.draw = function(){
 		context.drawImage(this.sprite,this.x,this.y);
 	}
+	
+	this.update = function(){
+		
+		this.rect = [this.x, this.y, this.sprite.width, this.sprite.height];
+		
+		if(isCollision()){
+			this.isFalling = false;
+		}
+		else{
+			this.isFalling = true;
+		}
+		
+		if(this.mLeft){
+			this.x -= 1;
+		}
+		
+		if(this.mRight){
+			this.x += 1;
+		}
+		
+		if(this.mUp){
+			this.y -= 1;
+		}
+		
+		if(this.mDown){
+			this.y += 1;
+		}
+		
+		if(this.isFalling){;
+			this.y = this.y + 1;
+		}
+	}
 }
 
 function Platform()
 {
-	this.x = Math.random()*10;
-	this.y = Math.random()*10;
+	//this.x = Math.random()*800;
+	//this.y = Math.random()*800;
+	
+	this.x = 0;
+	this.y = 600;
+	this.w = 200;
+	this.h = 100;
+	this.rect = [this.x, this.y, this.w, this.h];
 	
 	this.draw = function(){
 		context.beginPath();
-		context.rect(this.x, this.y, 200, 100);
+		context.rect(this.x, this.y, this.w, this.h);
 		context.fillStyle = 'yellow';
 		context.fill();
 		context.lineWidth = 7;
@@ -38,12 +78,42 @@ function Platform()
 	}
 }
 
+function isCollision()//Hardcoded atm. Needs to be more generic for multiple platform objects
+{
+		   return (player.rect[2] >= platform.rect[0] && // X - LHS
+		   player.rect[0] <= platform.rect[2] && // X - RHS 
+		   player.rect[1] + player.rect[3] == platform.rect[1]); // Y - Height check
+}
+
+function startGame()
+{
+	$("#menu").hide();
+	canvas.show();
+	setInterval(gameLoop, 1000 / 60); // 60fps
+}
+
+function gameLoop() 
+{
+	draw();
+	player.update();
+
+}
+
+function draw()
+{
+	
+	player.draw();
+	platform.draw();
+}
+
+/*Document related*/
 $(document).ready(function() 
 {	
 	$("#game").hide();
 	loadAssets();
 }
 );
+
 
 function loadAssets()
 {
@@ -105,48 +175,13 @@ $(document).keyup(function(e) {
 
 
 
-function startGame()
-{
-	$("#menu").hide();
-	canvas.show();
-	setInterval(gameLoop, 1000 / 60); // 60fps
-}
-
-function gameLoop() 
-{
-	draw();
-	update();
-
-}
 
 
-function draw()
-{
-	
-	player.draw();
-	platform.draw();
-}
 
-function update()
-{
-	if(player.mLeft){
-		player.x -= 1;
-	}
-	
-	if(player.mRight){
-		player.x += 1;
-	}
-	
-	if(player.mUp){
-		player.y -= 1;
-	}
-	
-	if(player.mDown){
-		player.y += 1;
-	}
-	
-	if(player.isFalling){;
-		player.y = player.y + 1;
-	}
-	
-}
+
+
+
+
+
+
+
