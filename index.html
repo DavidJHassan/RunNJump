@@ -7,17 +7,24 @@
 	<link rel="stylesheet" type="text/css" href="game.css">
 </head>
 <body>
+	
+	<canvas id="game" ></canvas>
+	<div id="gamescore">Score: </div>
+	<div id="gamelevel">Level: 1</div>
+	
 	<div id="menu">
 		<div id="menutitle">Run N Jump</div>
 		<input id="startButton" type="button" value="Start"/>
 	</div>
 	
-	<canvas id="game" ></canvas>
-	<div id="gamescore">Score: </div>
-	<div id="gamelevel">Level: 1</div>
+	<div id="gameover">
+		<div id="gameovertitle">Game Over</div>
+		<input id="restartButton" type="button" value="Restart"/>
+	</div>
 	<script src="jquery-2.1.0.js"></script>
 	<script src="Player.js"></script>
 	<script src="Platform.js"></script>
+	<script src="keycommand.js"></script>
 	<script src="game.js"></script>
 </body>
 </html>

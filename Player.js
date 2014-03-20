@@ -43,7 +43,7 @@ function Player()
 			if(this.jump_timer == 0){
 				this.jump_timer = setTimeout(jumpTimer,1000);
 			}
-			this.y -= 4;
+			this.y -= 6;
 		}
 		
 		if(this.mDown && !this.isFalling){
