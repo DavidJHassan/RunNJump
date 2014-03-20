@@ -24,6 +24,20 @@ background: black;
     color: red;
 }
 
+#gamelevel{
+	position: fixed;
+	top: 5%;
+	left: 25%;
+}
+
+#gamescore{
+	position: fixed;
+	top: 7%;
+	left: 25%;
+}
+
+
+
 #startButton{
     position: absolute;
     top: 30%;

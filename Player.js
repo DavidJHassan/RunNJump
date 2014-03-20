@@ -31,7 +31,7 @@ function Player()
 			this.isFalling = true;
 		}
 		
-		if(this.mLeft){
+		if(this.mLeft && this.x >= 0){
 			this.x -= 4;
 		}
 		
@@ -55,8 +55,8 @@ function Player()
 			this.y = this.y + 1;
 		}
 		
-		if(!(this.mRight || this.mLeft || this.mUp || this.Down || this.isFalling)){
-			this.x -= 1;
+		if(!(this.mRight || this.mLeft || this.mUp || this.Down || this.isFalling) && this.x >= 0){
+			this.x -= level;
 		}
 	}
 }

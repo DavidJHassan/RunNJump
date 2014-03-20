@@ -29,7 +29,7 @@ function Platform()
 	}
 	
 	this.update = function(){
-		this.x -= 1;
+		this.x -= level;
 		this.rect = [this.x, this.y, this.w, this.h];
 	}
 	
