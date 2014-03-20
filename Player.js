@@ -54,6 +54,10 @@ function Player()
 		if(this.isFalling){;
 			this.y = this.y + 1;
 		}
+		
+		if(!(this.mRight || this.mLeft || this.mUp || this.Down || this.isFalling)){
+			this.x -= 1;
+		}
 	}
 }
 
