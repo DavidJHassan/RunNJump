@@ -34,8 +34,6 @@ var updateTimer;
 var gameTimer;
 var createTimer;
 
-
-
 /*Game Related*/
 function isCollision()
 {			
