@@ -1,114 +1,73 @@
 /*Global Variables*/
 
 var canvas = $("#game");
-var context = canvas[0].getContext("2d");
+var screenW = window.innerWidth*0.60;
+var screenH = window.innerHeight*0.80;
+canvas.width = screenW;
+canvas.height = screenH;
 
+var context = canvas[0].getContext("2d");
+context.canvas.width = screenW;
+context.canvas.height = screenH;
 var player = new Player();
-var platform = new Platform();
+var starting_platform = new Platform();
+starting_platform.setDimensions(0,Math.round(3*screenH/4), 200,100);
+var platforms = new Array();
+platforms[0] = starting_platform;
+
 
 /*Game Related*/
-function Player()
-{
-	this.sprite = new Image();
-	this.x = 0;
-	this.y = 400;
-	this.rect = [this.x, this.y, this.sprite.width, this.sprite.height];
-	this.mLeft = false;
-	this.mRight = false;
-	this.mUp = false;
-	this.mDown = false;
-	this.isFalling = true;
-	
-	this.draw = function(){
-		context.drawImage(this.sprite,this.x,this.y);
-	}
-	
-	this.update = function(){
-		
-		this.rect = [this.x, this.y, this.sprite.width, this.sprite.height];
-		
-		if(isCollision()){
-			this.isFalling = false;
-		}
-		else{
-			this.isFalling = true;
-		}
-		
-		if(this.mLeft){
-			this.x -= 1;
-		}
-		
-		if(this.mRight){
-			this.x += 1;
-		}
-		
-		if(this.mUp){
-			this.y -= 1;
-		}
-		
-		if(this.mDown){
-			this.y += 1;
-		}
-		
-		if(this.isFalling){;
-			this.y = this.y + 1;
-		}
-	}
-}
 
-function Platform()
-{
-	//this.x = Math.random()*800;
-	//this.y = Math.random()*800;
-	
-	this.x = 0;
-	this.y = 600;
-	this.w = 200;
-	this.h = 100;
-	this.rect = [this.x, this.y, this.w, this.h];
-	
-	this.draw = function(){
-		context.beginPath();
-		context.rect(this.x, this.y, this.w, this.h);
-		context.fillStyle = 'yellow';
-		context.fill();
-		context.lineWidth = 7;
-		context.strokeStyle = 'black';
-		context.stroke();
-	}
-}
 
-function isCollision()//Hardcoded atm. Needs to be more generic for multiple platform objects
-{
-		   return (player.rect[2] >= platform.rect[0] && // X - LHS
-		   player.rect[0] <= platform.rect[2] && // X - RHS 
-		   player.rect[1] + player.rect[3] == platform.rect[1]); // Y - Height check
+function isCollision()
+{			
+		var isCollision = false;
+		
+		for(i = 0; i<platforms.length; i++){
+			
+		   if(player.rect[2] >= platforms[i].rect[0] && // X - LHS
+		   player.rect[0] <= platforms[i].rect[0] + platforms[i].rect[2] && // X - RHS 
+		   player.rect[1] + player.rect[3] == platforms[i].rect[1])// Y - Height check
+		   {
+			   isCollision = true;
+		   }
+	   }
+	   
+	   return isCollision;
 }
 
 function startGame()
 {
 	$("#menu").hide();
 	canvas.show();
+	setInterval(createPlatform, 3000);
 	setInterval(gameLoop, 1000 / 60); // 60fps
+	
 }
 
 function gameLoop() 
 {
-	draw();
-	player.update();
-
-}
-
-function draw()
-{
+	context.clearRect(0, 0, screenW, screenH);//clear canvas to redraw new frame
+	for(i = 0; i<platforms.length; i++){
+		platforms[i].draw();
+		platforms[i].update();
+	}
 	
+	player.update();
 	player.draw();
-	platform.draw();
 }
+
+function createPlatform()
+{
+	platforms.push(new Platform());
+}
+
 
 /*Document related*/
 $(document).ready(function() 
 {	
+	$("#menu").width(screenW);
+	$("#menu").height(screenH);
 	$("#game").hide();
 	loadAssets();
 }
@@ -157,6 +116,7 @@ $(document).keyup(function(e) {
 
         case 38: // up
 			player.mUp = false;
+			player.canJump = false;
         break;
 
         case 39: // right
