@@ -25,7 +25,7 @@ function isCollision()
 		
 		for(i = 0; i<platforms.length; i++){
 			
-		   if(player.rect[2] >= platforms[i].rect[0] && // X - LHS
+		   if(player.rect[0] + player.rect[2] >= platforms[i].rect[0] && // X - LHS
 		   player.rect[0] <= platforms[i].rect[0] + platforms[i].rect[2] && // X - RHS 
 		   player.rect[1] + player.rect[3] == platforms[i].rect[1])// Y - Height check
 		   {
