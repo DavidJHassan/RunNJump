@@ -147,8 +147,8 @@ $(document).ready(function()
 function loadAssets()
 {
 	
-	 player.sprite.src = 'assets/spritesheet.png';
-	 audio.src = 'assets/davidsver.mp3';
+	 player.sprite.src = 'assets/Image/spritesheet.png';
+	 audio.src = 'assets/Sound/davidsver.mp3';
 	 $(player.sprite).load(function()
 	 {	
 		 $("#startButton").click(startGame);
