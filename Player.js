@@ -3,7 +3,10 @@ function Player()
 	this.sprite = new Image();
 	this.x = 0;
 	this.y = Math.round(screenH/2);
-	this.rect = [this.x, this.y, this.sprite.width, this.sprite.height];
+	this.frames = 12;
+	this.frameH = 48;
+	this.currFrame = 0;
+	this.rect = [this.x, this.y, this.sprite.width, this.frameH];
 	this.mLeft = false;
 	this.mRight = false;
 	this.mUp = false;
@@ -13,17 +16,15 @@ function Player()
 	this.canJump =  false;
 	
 	this.draw = function(){
-		context.drawImage(this.sprite,this.x,this.y);
+		context.drawImage(this.sprite,0,this.frameH*this.currFrame,this.sprite.width,this.frameH, this.x, this.y, this.sprite.width, this.frameH);
 	}
 	
 	this.update = function(){
-		
-		this.rect = [this.x, this.y, this.sprite.width, this.sprite.height];
+		this.rect = [this.x, this.y, this.sprite.width, 48];
 		
 		if(isCollision()){
 			this.isFalling = false;
 			this.canJump = true;
-			
 			clearTimeout(this.jump_timer);
 			this.jump_timer = 0;
 		}
@@ -57,6 +58,10 @@ function Player()
 		
 		if(!(this.mRight || this.mLeft || this.mUp || this.Down || this.isFalling) && this.x >= 0){
 			this.x -= level;
+		}
+		else if(this.mRight || this.mLeft || this.mDown || this.mUp)
+		{
+			this.currFrame = (this.currFrame + 1) % 12;
 		}
 	}
 }

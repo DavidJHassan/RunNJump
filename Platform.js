@@ -9,7 +9,6 @@ function Platform()
 	this.fillColour = Math.round(Math.random()*CSS_COLOR_NAMES.length);
 	this.strokeColour = Math.round(Math.random()*CSS_COLOR_NAMES.length);
 	
-	
 	this.draw = function(){
 		context.beginPath();
 		context.rect(this.x, this.y, this.w, this.h);
@@ -31,6 +30,5 @@ function Platform()
 	this.update = function(){
 		this.x -= level;
 		this.rect = [this.x, this.y, this.w, this.h];
-	}
-	
+	}	
 }

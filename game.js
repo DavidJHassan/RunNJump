@@ -94,7 +94,6 @@ function gameLoop()
 		
 		removeOffScreen();
 		
-		
 		for(i = 0; i<platforms.length; i++){
 			platforms[i].draw();
 			platforms[i].update();
@@ -115,8 +114,7 @@ function gameLoop()
 		$("#restartButton").click(reload);
 		$("#gamelevel").css({"top":"45%", "left":"50%", "font-size": "25pt", "color": "red", "background": "white", "border": "1px solid red"});
 		$("#gamescore").css({"top":"50%", "left":"50%", "font-size": "25pt", "color": "red", "background": "white", "border": "1px solid red"});
-	}
-		
+	}	
 }
 
 function reload()
@@ -132,13 +130,10 @@ function updateGame()
 	c2 = CSS_COLOR_NAMES[Math.round(Math.random()*CSS_COLOR_NAMES.length)];	
 }
 
-
 function createPlatform()
 {
 	platforms.push(new Platform());
 }
-
-
 
 $(document).ready(function() 
 {	
@@ -149,11 +144,10 @@ $(document).ready(function()
 }
 );
 
-
 function loadAssets()
 {
 	
-	 player.sprite.src = 'assets/circle.png';
+	 player.sprite.src = 'assets/spritesheet.png';
 	 audio.src = 'assets/davidsver.mp3';
 	 $(player.sprite).load(function()
 	 {	
@@ -164,20 +158,6 @@ function loadAssets()
 	  
 }
 
-
 function isGameOver(){
 	return (player.y > screenH);	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

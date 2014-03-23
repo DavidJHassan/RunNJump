@@ -1,16 +1,16 @@
 #game{
-position: fixed;
-top: 5%;
-left: 25%;
-border: 1px solid black;
+	position: fixed;
+	top: 5%;
+	left: 25%;
+	border: 1px solid black;
 }
 
 #menu{
-position: fixed;
-top: 5%;
-left: 25%;
-border: 1px solid black;
-background: black;
+	position: fixed;
+	top: 5%;
+	left: 25%;
+	border: 1px solid black;
+	background: black;
 }
 
 #menutitle{
@@ -24,8 +24,6 @@ background: black;
     color: red;
 }
 
-
-
 #gamelevel{
 	position: fixed;
 	top: 5%;
@@ -38,8 +36,6 @@ background: black;
 	left: 25%;
 }
 
-
-
 #startButton{
     position: absolute;
     top: 30%;
@@ -51,7 +47,6 @@ background: black;
     text-align: center;
     color: red;
 }
-
 
 #gameover{
 	display: none;
@@ -67,7 +62,6 @@ background: black;
     font-size: 25pt;
     text-align: left;
     color: red;
-	
  }
  
  #gameovertitle{
@@ -81,6 +75,4 @@ background: black;
     color: red;
     background: white;
     border: 1px solid red;
-
 }
-
