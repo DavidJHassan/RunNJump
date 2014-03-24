@@ -76,3 +76,8 @@
     background: white;
     border: 1px solid red;
 }
+
+#highscore{
+	width:50%;
+	margin: 0 auto;
+}
